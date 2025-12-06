@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaik Ahmed Mohiuddin | Technical Engineer & Web Developer</title>
-    <meta name="description" content="Portfolio of Shaik Ahmed Mohiuddin - Web Developer, E-Commerce Specialist, and Python Automation Expert.">
+    <title>Shaik Ahmed Mohiuddin | Technical Operations Lead</title>
+    <meta name="description" content="Portfolio of Shaik Ahmed Mohiuddin - Technical Engineer, E-Commerce Specialist, and AI-Assisted Developer.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Custom Cursor */
@@ -98,6 +99,11 @@
             display: inline-block;
         }
 
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -118,9 +124,9 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #ccc;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 40px;
         }
 
@@ -159,7 +165,14 @@
             box-shadow: 0 0 30px var(--primary);
         }
 
-        /* Skills Grid */
+        /* About & Skills */
+        .about-text {
+            font-size: 1.1rem;
+            color: #ddd;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
@@ -198,6 +211,9 @@
             position: relative;
             transform-style: preserve-3d;
             perspective: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card-content {
@@ -238,6 +254,8 @@
             border-bottom: 1px solid var(--secondary);
             padding-bottom: 2px;
             transition: 0.3s;
+            display: inline-block;
+            margin-top: auto;
         }
 
         .card-link:hover {
@@ -252,7 +270,7 @@
         }
 
         .timeline-item {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             position: relative;
         }
 
@@ -269,16 +287,23 @@
         }
 
         .timeline-role {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .timeline-company {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .timeline-desc {
+            color: #aaa;
+            font-size: 0.95rem;
         }
 
         /* Contact Footer */
@@ -319,6 +344,7 @@
     <nav style="position: absolute; top: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 40px; z-index: 10;">
         <div style="font-weight: 800; font-size: 1.2rem;">Mohiddin.</div>
         <div>
+            <a href="#about" style="color: #fff; text-decoration: none; margin-left: 20px;">About</a>
             <a href="#projects" style="color: #fff; text-decoration: none; margin-left: 20px;">Projects</a>
             <a href="#contact" style="color: #fff; text-decoration: none; margin-left: 20px;">Contact</a>
         </div>
@@ -328,7 +354,7 @@
         <div class="container">
             <h2 style="color: var(--secondary); font-size: 1rem; letter-spacing: 3px; margin-bottom: 10px;">HELLO, I AM</h2>
             <h1 class="glitch-text">Shaik Ahmed<br>Mohiddin</h1>
-            <p>Web Developer | E-Commerce Specialist | Graphic Designer | Hardware Engineer</p>
+            <p>Bridging the Gap Between Hardware, E-Commerce, and Digital Innovation.</p>
             <div style="display: flex; gap: 20px; justify-content: center;">
                 <a href="#projects" class="btn">View Work</a>
                 <a href="#contact" class="btn" style="border-color: var(--secondary); color: var(--secondary);">Contact Me</a>
@@ -338,18 +364,24 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">Core Skills</h2>
+            <h2 class="section-title">About Me</h2>
+            <div class="about-text">
+                <p>I am a versatile <strong>Technical Operations Lead</strong> based in Kakinada with a robust background in Hardware Engineering. Currently driving operations at a fast-paced retail startup, I handle everything from IT infrastructure to full-stack web development.</p>
+                <br>
+                <p>I specialize in <span class="highlight">AI-Assisted Development</span>. By leveraging advanced tools like Gemini and ChatGPT, I generate efficient code for automation and web apps, allowing me to deliver high-quality digital solutions rapidly.</p>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: #fff;">Technical Arsenal</h3>
             <div class="skills-grid">
                 <div class="skill-tag">Shopify Development</div>
                 <div class="skill-tag">Python Automation</div>
-                <div class="skill-tag">WordPress</div>
-                <div class="skill-tag">HTML/PHP/JS</div>
-                <div class="skill-tag">Hardware Repair</div>
-                <div class="skill-tag">Networking</div>
-                <div class="skill-tag">Azure & AWS Basics</div>
-                <div class="skill-tag">Google/Meta Ads</div>
-                <div class="skill-tag">Video Editing</div>
-                <div class="skill-tag">Payment API Integration</div>
+                <div class="skill-tag">AI Prompt Engineering</div>
+                <div class="skill-tag">Hardware & Networking</div>
+                <div class="skill-tag">WordPress Experts</div>
+                <div class="skill-tag">Azure & AWS Deployment</div>
+                <div class="skill-tag">Google & Meta Ads</div>
+                <div class="skill-tag">Graphic Design</div>
+                <div class="skill-tag">Payment Gateway Integration</div>
             </div>
         </div>
     </section>
@@ -360,13 +392,28 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-role">Technical & E-Commerce Lead</div>
-                    <div class="timeline-company">Happy Babies Retail Pvt. Ltd</div>
-                    <p style="color: #aaa;">Built Shopify store, Python automation for entries, managed IT/Hardware, and handled design & marketing operations.</p>
+                    <div class="timeline-company">Happy Babies Retail Pvt. Ltd (Startup)</div>
+                    <div class="timeline-desc">
+                        <p>Serving as the "One-Man Technical Army" for an e-commerce startup.</p>
+                        <ul style="margin-top: 10px; margin-left: 20px; list-style-type: circle;">
+                            <li>Manage complete <strong>Shopify operations</strong>, including theme customization and inventory structure.</li>
+                            <li>Developed <strong>Python automation scripts</strong> (via AI tools) to streamline store entries and data management.</li>
+                            <li>Handle all <strong>IT Hardware</strong> needs: Computer repairs, printer maintenance, and networking.</li>
+                            <li>Execute digital marketing strategies (Google/Meta Ads) and design creative assets (Hoardings, Social Media).</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-role">Freelance Web Developer</div>
                     <div class="timeline-company">Various Clients</div>
-                    <p style="color: #aaa;">Delivered custom solutions for trading, sports leagues, NGOs, and engineering firms.</p>
+                    <div class="timeline-desc">
+                        <p>Delivering custom web solutions for diverse industries.</p>
+                        <ul style="margin-top: 10px; margin-left: 20px; list-style-type: circle;">
+                            <li>Built <strong>trading platforms</strong> with SMS/WhatsApp API integration for FinTech clients.</li>
+                            <li>Developed <strong>sports league websites</strong> (ATBPL) with player registration dashboards.</li>
+                            <li>Created math-logic based calculation systems for Chit Fund companies using <strong>PHP & JS</strong>.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -384,10 +431,10 @@
                         <div class="card-tags">
                             <span class="card-tag">Shopify</span>
                             <span class="card-tag">Liquid</span>
-                            <span class="card-tag">Automation</span>
+                            <span class="card-tag">E-Commerce Ops</span>
                         </div>
-                        <a href="https://uyyaala.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://uyyaala.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="card tilt-card">
@@ -399,21 +446,21 @@
                             <span class="card-tag">Math Logic</span>
                             <span class="card-tag">Full Stack</span>
                         </div>
-                        <a href="https://bonagirichits.adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://bonagirichits.adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="card tilt-card">
                     <div class="card-content">
                         <h3>ATBPL.in</h3>
-                        <p>Official website for Andhra Tennis Ball Premier League. Features player registration, Razorpay integration, and team galleries.</p>
+                        <p>Official website for Andhra Tennis Ball Premier League. Features player registration forms and team galleries.</p>
                         <div class="card-tags">
                             <span class="card-tag">WordPress</span>
-                            <span class="card-tag">Sports</span>
-                            <span class="card-tag">Forms</span>
+                            <span class="card-tag">Sports League</span>
+                            <span class="card-tag">Registration Forms</span>
                         </div>
-                        <a href="https://atbpl.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://atbpl.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="card tilt-card">
@@ -423,35 +470,35 @@
                         <div class="card-tags">
                             <span class="card-tag">WordPress</span>
                             <span class="card-tag">FinTech</span>
-                            <span class="card-tag">API</span>
+                            <span class="card-tag">API Integration</span>
                         </div>
-                        <a href="https://gwcindia.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://gwcindia.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="card tilt-card">
                     <div class="card-content">
                         <h3>Adapt Digi Solutions</h3>
-                        <p>Digital agency portfolio covering marketing, branding, SEO, and development services.</p>
+                        <p>Digital agency portfolio covering marketing, branding, SEO services, and web development.</p>
                         <div class="card-tags">
                             <span class="card-tag">Agency</span>
                             <span class="card-tag">Design</span>
                             <span class="card-tag">SEO</span>
                         </div>
-                        <a href="https://adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="card tilt-card">
                     <div class="card-content">
                         <h3>Miracle Engineering</h3>
-                        <p>Corporate portfolio featuring engineering services and project galleries.</p>
+                        <p>Corporate portfolio featuring engineering services, infrastructure projects, and galleries.</p>
                         <div class="card-tags">
                             <span class="card-tag">Engineering</span>
                             <span class="card-tag">Portfolio</span>
                         </div>
-                        <a href="https://miracleengineeringinfra.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <a href="https://miracleengineeringinfra.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
 
             </div>
