@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive 3D Portfolio | Shaik Ahmed Mohiuddin</title>
+
+<style>
+  * {
+    margin:0; padding:0; box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    overflow:hidden;
+    background:#000;
+    color:#fff;
+  }
+
+  /* Canvas Background */
+  canvas {
+    position:fixed;
+    top:0; left:0;
+    z-index:-1;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    position:relative;
+  }
+
+  .hero h1 {
+    font-size:52px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-shadow:0 0 16px #00eaff;
+    animation: floatText 5s ease-in-out infinite;
+  }
+
+  @keyframes floatText {
+    0% {transform:translateY(0px);}
+    50% {transform:translateY(-12px);}
+    100% {transform:translateY(0px);}
+  }
+
+  .hero p {
+    margin-top:16px;
+    font-size:20px;
+    font-weight:400;
+    opacity:0.8;
+  }
+
+  .btn {
+    margin-top:28px;
+    padding:12px 26px;
+    font-size:16px;
+    border-radius:50px;
+    background:transparent;
+    border:2px solid #00eaff;
+    color:#00eaff;
+    cursor:pointer;
+    transition:0.3s;
+  }
+
+  .btn:hover {
+    background:#00eaff;
+    color:#000;
+  }
+
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<section class="hero">
+  <h1>Shaik Ahmed Mohiuddin</h1>
+  <p>Technical Engineer | E-Commerce Specialist | Full Stack Support</p>
+  <button class="btn" onclick="alert('Work in progress!')">View Portfolio</button>
+</section>
+
+<script>
+/*
+  3D Interactive Particle Background
+  — Lightweight and fast 
+*/
+
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+let particlesArray = [];
+const numParticles = 120;
+const mouse = { x: null, y: null };
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+});
+
+window.addEventListener("mousemove", (event) => {
+  mouse.x = event.x;
+  mouse.y = event.y;
+});
+
+class Particle {
+  constructor(x, y, size, speedX, speedY) {
+    this.x = x; this.y = y;
+    this.size = size;
+    this.speedX = speedX;
+    this.speedY = speedY;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = "#00eaff";
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // Bounce
+    if (this.x > innerWidth || this.x < 0) this.speedX *= -1;
+    if (this.y > innerHeight || this.y < 0) this.speedY *= -1;
+
+    // Interaction
+    let dx = mouse.x - this.x;
+    let dy = mouse.y - this.y;
+    let dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < 100) {
+      this.x -= dx / 20;
+      this.y -= dy / 20;
+    }
+
+    this.draw();
+  }
+}
+
+function init() {
+  particlesArray = [];
+  for (let i = 0; i < numParticles; i++) {
+    let size = Math.random() * 2 + 1;
+    let x = Math.random() * innerWidth;
+    let y = Math.random() * innerHeight;
+    let speedX = (Math.random() - 0.5) * 1;
+    let speedY = (Math.random() - 0.5) * 1;
+    particlesArray.push(new Particle(x, y, size, speedX, speedY));
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  particlesArray.forEach(particle => particle.update());
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
+
+</body>
+</html>
