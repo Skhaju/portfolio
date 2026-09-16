@@ -1,716 +1,893 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaik Ahmed Mohiuddin | Technical Operations Lead</title>
-    <meta name="description" content="Portfolio of Shaik Ahmed Mohiuddin - Technical Engineer, E-Commerce Specialist, Digital Marketer and AI-Assisted Developer.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khaju — Developer, Designer & Systems Builder</title>
+  <meta name="description" content="Portfolio of Ahamed Mohiuddin, professionally known as Khaju — full stack developer, designer, IT and e-commerce operations specialist.">
+  <meta name="author" content="Ahamed Mohiuddin (Khaju)">
+  <meta name="theme-color" content="#050507">
 
-    <style>
-        :root {
-            --bg: #050505;
-            --text: #ffffff;
-            --primary: #00f2ea; /* Cyan Neon */
-            --secondary: #ff0050; /* Pink Neon */
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-hover: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.1);
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Hiding default cursor for custom one */
-        }
+  <!-- Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
 
-        /* Custom Cursor */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s;
-            mix-blend-mode: difference;
-        }
-        .cursor-dot {
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-        }
+<style>
+/* Isolated motion player - intentionally does not use the site's .video modal system */
+.motion-card{position:relative;min-width:0}
+.motion-open{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.motion-card .video-thumb{position:relative;overflow:hidden;aspect-ratio:16/9;background:#09090c}
+.motion-card .video-thumb img,.motion-card .video-thumb video{width:100%;height:100%;display:block;object-fit:cover}
+.motion-card .video-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at center,rgba(34,211,238,.10),transparent 42%),#09090c}
+.motion-card .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.96);color:#050507;transition:transform .2s ease;z-index:3}
+.motion-card:hover .play{transform:translate(-50%,-50%) scale(1.08)}
+.motion-card .play svg{width:23px;height:23px;stroke-width:2.4}
+.motion-card .video-info{padding-top:14px}
+.motion-card .video-info h3{margin:0 0 5px}
+.motion-modal{position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;padding:24px}
+.motion-modal.active{display:flex}
+.motion-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.94);backdrop-filter:blur(10px)}
+.motion-modal-card{position:relative;z-index:2;width:min(1100px,96vw)}
+.motion-player{width:100%;aspect-ratio:16/9;background:#000;border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.65)}
+.motion-player video,.motion-player iframe{width:100%;height:100%;display:block;border:0}
+.motion-player video{background:#000}
+.motion-close{position:absolute;top:-48px;right:0;width:40px;height:40px;padding:0;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(10,10,12,.9);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4}
+.motion-close:hover{background:#fff;color:#050507}
+.motion-close svg{width:21px;height:21px}
+body.motion-open-lock{overflow:hidden}
+@media(max-width:700px){.motion-modal{padding:12px}.motion-close{top:-48px}}
+</style>
 
-        /* 3D Background Canvas */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
-        }
 
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
+<style id="image-display-adjustments">
+/* Make portfolio images visually smaller */
+.masonry .design-item {
+  padding: 10px;
+}
 
-        section {
-            padding: 100px 0;
-        }
+.masonry .design-item img {
+  width: 82%;
+  max-width: 82%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
 
-        /* Typography */
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-        }
+/* Make motion thumbnails smaller inside their cards */
+.motion-card .video-thumb {
+  width: 82%;
+  margin: 0 auto;
+}
 
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 50px;
-            background: linear-gradient(to right, var(--primary), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
+.motion-card .video-thumb img,
+.motion-card .video-thumb video {
+  object-fit: contain;
+}
 
-        .highlight {
-            color: var(--primary);
-            font-weight: 600;
-        }
+/* Smaller profile image */
+.portrait img {
+  max-width: 82%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            flex-direction: column;
-        }
+@media (max-width: 700px) {
+  .masonry .design-item img,
+  .motion-card .video-thumb,
+  .portrait img {
+    width: 90%;
+    max-width: 90%;
+  }
+}
+</style>
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(0, 242, 234, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #ccc;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--primary);
-            transition: 0.5s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            color: #000;
-            box-shadow: 0 0 30px var(--primary);
-        }
-
-        /* About & Skills */
-        .about-text {
-            font-size: 1.1rem;
-            color: #ddd;
-            max-width: 800px;
-            margin-bottom: 40px;
-        }
-
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .skill-tag {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 10px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
-
-        .skill-tag:hover {
-            background: var(--primary);
-            color: #000;
-            transform: translateY(-5px);
-        }
-
-        /* Project Cards (3D Tilt) */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.1s; /* Fast transition for tilt */
-            position: relative;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-content {
-            transform: translateZ(20px); /* Pop out effect */
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .card p {
-            color: #aaa;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .card-link {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid var(--secondary);
-            padding-bottom: 2px;
-            transition: 0.3s;
-            display: inline-block;
-            margin-top: auto;
-        }
-
-        .card-link:hover {
-            color: var(--secondary);
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            border-left: 2px solid var(--border);
-        }
-
-        .timeline-item {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -36px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: var(--secondary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--secondary);
-        }
-
-        .timeline-role {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .timeline-company {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .timeline-desc {
-            color: #aaa;
-            font-size: 0.95rem;
-        }
-
-        /* Contact Footer */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 50px 0;
-            text-align: center;
-            background: rgba(0,0,0,0.5);
-        }
-
-        .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: scale(1.2);
-        }
-
-        @media (max-width: 768px) {
-            .section-title { font-size: 2rem; }
-            .hero h1 { font-size: 3rem; }
-            .cursor, .cursor-dot { display: none; } /* Disable custom cursor on mobile */
-            * { cursor: auto; }
-        }
-    </style>
 </head>
 <body>
-
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
-
-    <div id="canvas-container"></div>
-
-    <nav style="position: absolute; top: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 40px; z-index: 10;">
-        <div style="font-weight: 800; font-size: 1.2rem;">Mohiddin.</div>
-        <div>
-            <a href="#about" style="color: #fff; text-decoration: none; margin-left: 20px;">About</a>
-            <a href="#projects" style="color: #fff; text-decoration: none; margin-left: 20px;">Projects</a>
-            <a href="#contact" style="color: #fff; text-decoration: none; margin-left: 20px;">Contact</a>
-        </div>
+  <div class="shell">
+    <!-- Navigation -->
+    <nav class="nav glass" aria-label="Primary navigation">
+      <a href="#top" aria-label="Khaju home">AHAMED MOHIUDDIN<span style="color:#22d3ee">.</span></a>
+      <div class="nav-links">
+        <a href="#work">WORK</a>
+        <a href="#design">DESIGN</a>
+        <a href="#systems">SYSTEMS</a>
+        <a href="#lab">LAB</a>
+      </div>
+      <a class="nav-cta" href="#contact">CONTACT</a>
     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h2 style="color: var(--secondary); font-size: 1rem; letter-spacing: 3px; margin-bottom: 10px;">HELLO, I AM</h2>
-            <h1 class="glitch-text">Shaik Ahmed<br>Mohiddin</h1>
-            <p>Tech + Design + Marketing + IT — End-to-End Solutions</p>
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <a href="#projects" class="btn">View Work</a>
-                <a href="#contact" class="btn" style="border-color: var(--secondary); color: var(--secondary);">Contact Me</a>
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="inner hero-grid">
+          <div>
+            <p class="eyebrow">FULL-STACK · DESIGN · SYSTEMS</p>
+            <h1 style="font-size:clamp(25px,3vw,40px);letter-spacing:-.06em;margin:14px 0 0">Ahamed Mohiuddin</h1>
+            <div class="hero-title">
+              BUILD.. DESIGN..
+              <span>DEVELOP</span>
             </div>
-        </div>
-    </section>
+            <p class="hero-copy" style="font-weight:600;color:#e4e4eb">
+              Developer · Designer · IT Hardware Engineer
+            </p>
+            <p class="hero-copy" style="margin-top:12px">
+              I design and ship digital products, e-commerce platforms, and IT infrastructure — from pixel-perfect interfaces to production systems that scale.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work">VIEW WORK</a>
+              <a class="button button-secondary" href="#contact">GET IN TOUCH</a>
+            </div>
+            <p class="location">📍 KAKINADA, ANDHRA PRADESH · INDIA</p>
+          </div>
 
-    <section id="about">
-    <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-text">
-            <p>
-                I am a self-learned and multi-skilled technical developer based in Kakinada. I specialize in building Shopify stores, WordPress websites, and custom web solutions.
-                I also possess strong expertise in <span class="highlight">Digital Marketing</span>, helping businesses grow through targeted Google Ads, Meta Ads campaigns, and Google Business Profile (GMB) optimization.
-            </p>
-            <br>
-<p>
-                I'm not a formally trained professional — I learned everything on my own through real-time work. 
-                I actively use AI tools such as ChatGPT, Gemini AI, Cursor, and Trae to assist in coding and automation, ensuring I deliver solutions faster and smarter.
-            </p>
+          <div class="workstation" aria-label="Interactive digital workstation illustration">
+            <div class="orbit"></div>
+            <div id="ws-core" class="ws-core">
+              <div class="screen monitor"></div>
+              <div class="screen laptop"></div>
+              <div class="device router"></div>
+              <div class="camera"></div>
+              <div class="cube"></div>
+              <span class="tag tag1">WEB</span>
+              <span class="tag tag2">DESIGN</span>
+              <span class="tag tag3">VIDEO</span>
+              <span class="tag tag4">IT</span>
+              <span class="tag tag5">E-COMMERCE</span>
+              <span class="tag tag6">AI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro + Stats -->
+      <section class="section">
+        <div class="inner">
+          <p class="eyebrow">THE PROFILE</p>
+          <h2 class="section-title">One person. Full stack of capabilities.</h2>
+          <p class="copy">
+            From high-traffic Shopify stores and custom financial applications to LAN infrastructure, CCTV systems, and creative production — I bridge development, design, and operations.
+          </p>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong class="counter" data-target="6">0</strong>
+              <span>Years of Experience</span>
+            </div>
+            <div class="stat">
+              <strong class="counter" data-target="40">0</strong>
+              <span>Systems Managed</span>
+            </div>
+            <div class="stat">
+              <strong class="counter" data-target="20">0</strong>
+              <span>Projects Delivered</span>
+            </div>
+            <div class="stat">
+              <strong class="counter" data-target="5">0</strong>
+              <span>Awards Received</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work / Projects -->
+      <section id="work" class="section">
+        <div class="inner">
+          <p class="eyebrow">SELECTED WORK</p>
+          <h2 class="section-title">Projects that ship.</h2>
+          <p class="copy">
+            Production platforms across e-commerce, finance, sports registration, and custom full-stack applications.
+          </p>
+
+          <div class="project-grid">
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>UYYAALA.COM</h3>
+                <span class="meta">E-COMMERCE / SHOPIFY</span>
+                <p class="tech">Shopify · Liquid · JavaScript · Graphic Design · API Integrations</p>
+                <p>High-traffic baby products e-commerce platform with storefront modifications, UI assets, order workflows and digital integrations.</p>
+              </div>
+              <a class="text-link" href="https://uyyaala.com" target="_blank" rel="noopener noreferrer">LIVE PROJECT →</a>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>LAXONSBABY.COM</h3>
+                <span class="meta">E-COMMERCE / WORDPRESS</span>
+                <p class="tech">WordPress · E-commerce · JavaScript · APIs</p>
+                <p>Digital commerce platform supporting baby and lifestyle products with custom design and e-commerce workflows.</p>
+              </div>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>BONAGIRI CHITS</h3>
+                <span class="meta">FINANCIAL WEB APPLICATION</span>
+                <p class="tech">PHP · JavaScript · HTML5 · CSS3 · MySQL</p>
+                <p>Custom financial calculation platform with engines for income, dividend and financial outcome calculations.</p>
+              </div>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>GWCINDIA.IN</h3>
+                <span class="meta">FINANCE / WORDPRESS</span>
+                <p class="tech">WordPress · PHP · Elementor · WP Data Tables · SMS API</p>
+                <p>Stock trading platform featuring dynamic data tables, advanced popups and SMS registration workflows.</p>
+              </div>
+            </article>
             
-            <br>
-<p>
 
-                Along with development, I design product creatives, flex banners, and promotional videos.
-                I have 7+ years of experience in computer hardware, troubleshooting, and working with cloud platforms like Azure and AWS.
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>ATBPL.IN</h3>
+                <span class="meta">SPORTS / REGISTRATION PLATFORM</span>
+                <p class="tech">WordPress · Contact Form 7 · Razorpay</p>
+                <p>Online cricket tournament registration platform with multi-step registration and Razorpay payment integration.</p>
+              </div>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>OURKAKINADA.COM</h3>
+                <span class="meta">HYPERLOCAL PLATFORM</span>
+                <p class="tech">WordPress · PHP · MySQL · Local SEO</p>
+                <p>Hyper-local directory and community information platform designed around local discovery and search.</p>
+              </div>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>MIRACLE ENGINEERING INFRA</h3>
+                <span class="meta">CORPORATE WEBSITE</span>
+                <p class="tech">WordPress · PHP · MySQL</p>
+                <p>Professional corporate website showcasing engineering infrastructure projects and services.</p>
+              </div>
+            </article>
+
+            <article class="project tilt">
+              <div>
+                <div class="mock"></div>
+                <h3>RESTAURANT MANAGEMENT SYSTEM</h3>
+                <span class="meta">FULL STACK APPLICATION</span>
+                <p class="tech">React · TypeScript · Supabase · PostgreSQL · Tailwind CSS</p>
+                <p>Role-based Admin, Billing, KOT and Server platform with real-time restaurant operations.</p>
+                <div class="chip-row" style="margin-top:12px">
+                  <span class="chip">KOT</span>
+                  <span class="chip">BILLING</span>
+                  <span class="chip">ATTENDANCE</span>
+                  <span class="chip">EXPENSES</span>
+                </div>
+              </div>
+            </article>
+            <article class="project tilt">
+  <div>
+    <div class="mock"></div>
+    <h3>PLAYER365NEWS</h3>
+    <span class="meta">SPORTS / NEWS PLATFORM</span>
+    <p class="tech">WordPress · PHP · MySQL · SEO</p>
+    <p>Sports news and content platform focused on cricket, match updates, player news, tournament coverage, and engaging sports content.</p>
+  </div>
+</article>
+
+<article class="project tilt">
+  <div>
+    <div class="mock"></div>
+    <h3>MVSAGAR.IN</h3>
+    <span class="meta">PERSONAL / PORTFOLIO WEBSITE</span>
+    <p class="tech">HTML · CSS · JavaScript · Responsive Design</p>
+    <p>Custom-built personal portfolio website designed from scratch with a modern responsive interface to showcase professional work, skills, projects, and achievements.</p>
+  </div>
+</article>
+
+            <article class="project tilt"> <div> <div class="mock"></div> <h3>TDPKKCITY.ORG</h3> <span class="meta">CITIZEN / WARD ISSUE PLATFORM</span> <p class="tech">Custom Theme · HTML · CSS · PHP · Forms</p> <p>Custom-built citizen platform where people can submit and report ward-level issues, helping organize public concerns and community feedback through an easy-to-use online form system.</p> </div> </article>
+
+<article class="project tilt"> <div> <div class="mock"></div> <h3>OMFOUNDATION.ORG</h3> <span class="meta">FOUNDATION / ORGANIZATION WEBSITE</span> <p class="tech">Custom Theme · HTML · CSS · JavaScript · Responsive Design</p> <p>Custom-designed foundation website created to present the organization's vision, initiatives, activities, programs, and community-focused work through a professional digital presence.</p> </div> </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Design -->
+      <section id="design" class="section">
+        <div class="inner">
+          <p class="eyebrow">VISUAL DESIGN</p>
+          <h2 class="section-title">Brand systems &amp; campaigns.</h2>
+          <p class="copy">
+            Social creatives, identity systems, print collateral, and digital ads produced for retail, events, and product launches.
+          </p>
+
+          <div class="design-controls" role="group" aria-label="Filter design work">
+            <button class="filter active" data-filter="all">ALL</button>
+            <button class="filter" data-filter="social">SOCIAL MEDIA</button>
+            <button class="filter" data-filter="branding">BRANDING</button>
+            <button class="filter" data-filter="print">PRINT</button>
+            <button class="filter" data-filter="ads">DIGITAL ADS</button>
+          </div>
+
+          <div class="masonry">
+
+  <button class="design-item" data-category="branding" data-name="Yash Branding" data-type="Branding">
+    <img src="assets/images/branding (1).jpg" alt="Yash Branding" loading="lazy">
+    <span class="design-caption">Yash Branding</span>
+  </button>
+
+  <button class="design-item" data-category="branding" data-name="Yash Brand Design" data-type="Branding">
+    <img src="assets/images/branding (2).jpeg" alt="Yash Brand Design" loading="lazy">
+    <span class="design-caption">Yash Brand Design</span>
+  </button>
+
+  <button class="design-item" data-category="branding" data-name="Cherry Clafoutis Branding" data-type="Branding">
+    <img src="assets/images/branding (3).jpeg" alt="Cherry Clafoutis Branding" loading="lazy">
+    <span class="design-caption">Cherry Clafoutis Branding</span>
+  </button>
+
+  <button class="design-item" data-category="branding" data-name="Yash Creative" data-type="Branding">
+    <img src="assets/images/branding (4).jpeg" alt="Yash Creative" loading="lazy">
+    <span class="design-caption">Yash Creative</span>
+  </button>
+
+  <button class="design-item" data-category="branding" data-name="Yash Catering & Events" data-type="Branding">
+    <img src="assets/images/branding (5).jpeg" alt="Yash Catering & Events" loading="lazy">
+    <span class="design-caption">Yash Catering & Events</span>
+  </button>
+
+  <button class="design-item" data-category="branding" data-name="Go Green Campaign" data-type="Branding">
+    <img src="assets/images/branding (6).jpeg" alt="Go Green Campaign" loading="lazy">
+    <span class="design-caption">Go Green Campaign</span>
+  </button>
+
+  <button class="design-item" data-category="ads" data-name="Turtle Wax Deep Interior Cleaning" data-type="Digital Ad">
+    <img src="assets/images/Digital Ads (1).jpg" alt="Turtle Wax Deep Interior Cleaning" loading="lazy">
+    <span class="design-caption">Turtle Wax Deep Interior Cleaning</span>
+  </button>
+
+  <button class="design-item" data-category="ads" data-name="916 Gold Rupul" data-type="Digital Ad">
+    <img src="assets/images/Digital Ads (2).jpg" alt="916 Gold Rupul" loading="lazy">
+    <span class="design-caption">916 Gold Rupul</span>
+  </button>
+
+  <button class="design-item" data-category="ads social" data-name="Turtle Wax Great Drive" data-type="Digital Ad">
+    <img src="assets/images/Digital Ads (3).jpg" alt="Turtle Wax Great Drive" loading="lazy">
+    <span class="design-caption">Turtle Wax Great Drive</span>
+  </button>
+
+  <button class="design-item" data-category="ads" data-name="Club Assembly" data-type="Digital Ad">
+    <img src="assets/images/Digital Ads (4).jpg" alt="Club Assembly" loading="lazy">
+    <span class="design-caption">Club Assembly</span>
+  </button>
+
+  <button class="design-item" data-category="ads" data-name="Turtle Wax Interior Cleaning" data-type="Digital Ad">
+    <img src="assets/images/Digital Ads (5).jpg" alt="Turtle Wax Interior Cleaning" loading="lazy">
+    <span class="design-caption">Turtle Wax Interior Cleaning</span>
+  </button>
+
+  <button class="design-item" data-category="print" data-name="Canteen Price" data-type="Print Design">
+    <img src="assets/images/print.jpg" alt="Independence Day" loading="lazy">
+    <span class="design-caption">Canteen Price</span>
+  </button>
+<button class="design-item" data-category="print" data-name="Independence Day" data-type="Print Design">
+    <img src="assets/images/print (1).jpg" alt="Independence Day" loading="lazy">
+    <span class="design-caption">Independence Day</span>
+  </button>
+  <button class="design-item" data-category="print" data-name="Event Invitation" data-type="Print Design">
+    <img src="assets/images/print (2).jpg" alt="Event Invitation" loading="lazy">
+    <span class="design-caption">Event Invitation</span>
+  </button>
+
+  <button class="design-item" data-category="print" data-name="Event Poster" data-type="Print Design">
+    <img src="assets/images/print (3).jpg" alt="Event Poster" loading="lazy">
+    <span class="design-caption">Event Poster</span>
+  </button>
+
+  <button class="design-item" data-category="print" data-name="Festival Poster" data-type="Print Design">
+    <img src="assets/images/print (4).jpg" alt="Festival Poster" loading="lazy">
+    <span class="design-caption">Festival Poster</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Moharram Creative" data-type="Social Media">
+    <img src="assets/images/Social (1).jpg" alt="Moharram Creative" loading="lazy">
+    <span class="design-caption">Moharram Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Vinayaka Chavithi Creative" data-type="Social Media">
+    <img src="assets/images/Social (2).jpg" alt="Vinayaka Chavithi Creative" loading="lazy">
+    <span class="design-caption">Vinayaka Chavithi Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Festival Creative" data-type="Social Media">
+    <img src="assets/images/Social (3).jpg" alt="Festival Creative" loading="lazy">
+    <span class="design-caption">Festival Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Festival Social Post" data-type="Social Media">
+    <img src="assets/images/Social (4).jpg" alt="Festival Social Post" loading="lazy">
+    <span class="design-caption">Festival Social Post</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Chavithi Creative" data-type="Social Media">
+    <img src="assets/images/Social (5).jpg" alt="Chavithi Creative" loading="lazy">
+    <span class="design-caption">Chavithi Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Festival Campaign" data-type="Social Media">
+    <img src="assets/images/Social (6).jpg" alt="Festival Campaign" loading="lazy">
+    <span class="design-caption">Festival Campaign</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Ganesh Festival Creative" data-type="Social Media">
+    <img src="assets/images/Social (7).jpg" alt="Ganesh Festival Creative" loading="lazy">
+    <span class="design-caption">Ganesh Festival Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Festival Creative" data-type="Social Media">
+    <img src="assets/images/Social (8).jpg" alt="Festival Creative" loading="lazy">
+    <span class="design-caption">Festival Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Teachers Day Creative" data-type="Social Media">
+    <img src="assets/images/Social (9).jpg" alt="Teachers Day Creative" loading="lazy">
+    <span class="design-caption">Teachers Day Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Vinayaka Chavithi Creative" data-type="Social Media">
+    <img src="assets/images/Social (10).jpg" alt="Vinayaka Chavithi Creative" loading="lazy">
+    <span class="design-caption">Vinayaka Chavithi Creative</span>
+  </button>
+
+  <button class="design-item" data-category="social" data-name="Eid ul Adha Creative" data-type="Social Media">
+    <img src="assets/images/Social.jpg" alt="Eid ul Adha Creative" loading="lazy">
+    <span class="design-caption">Eid ul Adha Creative</span>
+  </button>
+
+</div>
+           <!-- Motion / Video -->
+      <section id="motion" class="section">
+        <div class="inner">
+          <p class="eyebrow">MOTION</p>
+          <h2 class="section-title">Video &amp; motion graphics.</h2>
+          <p class="copy">
+            Promotional videos, short-form content, and visual storytelling created for brands and businesses.
+          </p>
+
+          <div class="video-grid">
+
+            <article class="motion-card" data-motion-type="local"
+                     data-motion-url="assets/images/sangeet.mp4">
+              <button type="button" class="motion-open" aria-label="Play Wedding Sangeet video">
+                <div class="video-thumb">
+                  <video class="motion-preview"
+                         src="assets/images/sangeet.mp4"
+                         muted
+                         playsinline
+                         preload="metadata"></video>
+                  <span class="play"><i data-lucide="play"></i></span>
+                </div>
+                <div class="video-info">
+                  <h3>Wedding Sangeet</h3>
+                  <span class="meta">Wedding Sangeet</span>
+                </div>
+              </button>
+            </article>
+            <article class="motion-card" data-motion-type="local"
+                     data-motion-url="assets/images/invitationwedding.mp4">
+              <button type="button" class="motion-open" aria-label="Play Ai wedding invitation">
+                <div class="video-thumb">
+                  <video class="motion-preview"
+                         src="assets/images/invitationwedding.mp4"
+                         muted
+                         playsinline
+                         preload="metadata"></video>
+                  <span class="play"><i data-lucide="play"></i></span>
+                </div>
+                <div class="video-info">
+                  <h3>Ai wedding invitation</h3>
+                  <span class="meta">Ai wedding invitation</span>
+                </div>
+              </button>
+            </article>
+
+            <article class="motion-card" data-motion-type="youtube"
+                     data-motion-url="https://www.youtube.com/embed/KZCnoZ2zmG0">
+              <button type="button" class="motion-open" aria-label="Play Promotional Short">
+                <div class="video-thumb">
+                  <img
+                    src="https://img.youtube.com/vi/KZCnoZ2zmG0/maxresdefault.jpg"
+                    alt="Promotional Short"
+                    loading="lazy"
+                    onerror="this.src='https://img.youtube.com/vi/KZCnoZ2zmG0/hqdefault.jpg'">
+                  <span class="play"><i data-lucide="play"></i></span>
+                </div>
+                <div class="video-info">
+                  <h3>Promotional Short</h3>
+                  <span class="meta">SHORT FORM / YOUTUBE</span>
+                </div>
+              </button>
+            </article>
+
+            <article class="motion-card" data-motion-type="local"
+                     data-motion-url="assets/images/222.mp4">
+              <button type="button" class="motion-open" aria-label="Play Theater Canteen video">
+                <div class="video-thumb">
+                  <video class="motion-preview"
+                         src="assets/images/222.mp4"
+                         muted
+                         playsinline
+                         preload="metadata"></video>
+                  <span class="play"><i data-lucide="play"></i></span>
+                </div>
+                <div class="video-info">
+                  <h3>Theater Canteen</h3>
+                  <span class="meta">PROMOTIONAL / VIDEO</span>
+                </div>
+              </button>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Dedicated Motion Video Modal -->
+      <div id="motion-viewer" class="motion-modal" aria-hidden="true">
+        <div class="motion-modal-backdrop"></div>
+        <div class="motion-modal-card" role="dialog" aria-modal="true" aria-label="Video player">
+          <button type="button" id="close-motion-viewer" class="motion-close" aria-label="Close video">
+            <i data-lucide="x"></i>
+          </button>
+          <div id="motion-player" class="motion-player"></div>
+        </div>
+      </div>
+
+      <!-- Systems / Infrastructure -->
+      <section id="systems" class="section infra">
+        <div class="inner">
+          <p class="eyebrow">IT &amp; INFRASTRUCTURE</p>
+          <h2 class="section-title">Systems that stay online.</h2>
+          <p class="copy">
+            Hands-on administration of desktops, networks, surveillance, and biometric systems across the organization.
+          </p>
+          <div class="infra-grid">
+            <article class="infra-card">
+              <h3>DESKTOP ADMINISTRATION</h3>
+              <p>40+ systems installed, configured and maintained.</p>
+            </article>
+            <article class="infra-card">
+              <h3>NETWORKING</h3>
+              <p>LAN setup, cabling, switch configuration and troubleshooting.</p>
+            </article>
+            <article class="infra-card">
+              <h3>WINDOWS &amp; UBUNTU</h3>
+              <p>Operating system installation, configuration and maintenance.</p>
+            </article>
+            <article class="infra-card">
+              <h3>CCTV</h3>
+              <p>Surveillance installation, maintenance and troubleshooting.</p>
+            </article>
+            <article class="infra-card">
+              <h3>BIOMETRIC SYSTEMS</h3>
+              <p>Attendance device setup and ongoing support.</p>
+            </article>
+            <article class="infra-card">
+              <h3>NETWORK PRINTING</h3>
+              <p>Network and barcode printer installation and repair.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- E-commerce Operations -->
+      <section class="section">
+        <div class="inner">
+          <p class="eyebrow">E-COMMERCE OPERATIONS</p>
+          <h2 class="section-title">From click to doorstep.</h2>
+          <div class="workflow">
+            <span class="node">CUSTOMER</span>
+            <span class="arrow">→</span>
+            <span class="node">WEBSITE</span>
+            <span class="arrow">→</span>
+            <span class="node">ORDER</span>
+            <span class="arrow">→</span>
+            <span class="node">PAYMENT</span>
+            <span class="arrow">→</span>
+            <span class="node">INVENTORY</span>
+            <span class="arrow">→</span>
+            <span class="node">FULFILLMENT</span>
+            <span class="arrow">→</span>
+            <span class="node">DELIVERY</span>
+          </div>
+          <p class="copy">
+            End-to-end e-commerce operations covering storefronts, payments, inventory sync, fulfillment workflows, and analytics.
+          </p>
+          <div class="chip-row" style="margin-top:28px">
+            <span class="chip">SHOPIFY</span>
+            <span class="chip">WOOCOMMERCE</span>
+            <span class="chip">RAZORPAY</span>
+            <span class="chip">WHATSAPP API</span>
+            <span class="chip">SMS API</span>
+            <span class="chip">GOOGLE ANALYTICS</span>
+            <span class="chip">MICROSOFT CLARITY</span>
+            <span class="chip">POSTHOG</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lab -->
+      <section id="lab" class="section">
+        <div class="inner">
+          <p class="eyebrow">THE LAB</p>
+          <h2 class="section-title">Experiments with practical outcomes.</h2>
+          <div class="lab-grid">
+            <div class="lab-main glass">
+              <div class="module">AI CAMERA VISION</div>
+              <div class="module">COMPUTER VISION</div>
+              <div class="module">AUTOMATION</div>
+              <div class="module">VOICE AI</div>
+              <div class="module">SMART DEVICES</div>
+              <div class="module">AI-ASSISTED DEVELOPMENT</div>
+            </div>
+            <div class="glass" style="padding:30px">
+              <h3 style="font-size:28px;letter-spacing:-.05em">Experiments with practical outcomes.</h3>
+              <p class="copy" style="font-size:16px">
+                Exploring AI-assisted development, interactive voice technology, computer vision, automation and modern creative workflows.
+              </p>
+              <div class="chip-row" style="margin-top:25px">
+                <span class="chip">CHATGPT</span>
+                <span class="chip">GEMINI</span>
+                <span class="chip">CURSOR</span>
+                <span class="chip">TRAE</span>
+                <span class="chip">COPILOT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Toolbox -->
+      <section class="section">
+        <div class="inner">
+          <p class="eyebrow">TOOLBOX</p>
+          <h2 class="section-title">What I work with.</h2>
+          <div class="tool-grid">
+            <article class="tool">
+              <h3>DEVELOPMENT</h3>
+              <p>HTML5 · CSS3 · JavaScript · TypeScript · React · PHP · SQL · jQuery · AJAX</p>
+            </article>
+            <article class="tool">
+              <h3>CMS / E-COMMERCE</h3>
+              <p>WordPress · WooCommerce · Shopify · Liquid · Elementor</p>
+            </article>
+            <article class="tool">
+              <h3>DESIGN</h3>
+              <p>Photoshop · Illustrator · InDesign · After Effects</p>
+            </article>
+            <article class="tool">
+              <h3>IT &amp; SYSTEMS</h3>
+              <p>Windows · Ubuntu · LAN · CCTV · Networking · cPanel · Apache · Nginx</p>
+            </article>
+            <article class="tool">
+              <h3>ANALYTICS</h3>
+              <p>Razorpay · WhatsApp API · SMS APIs · Google Analytics · Clarity · PostHog</p>
+            </article>
+            <article class="tool">
+              <h3>DEVELOPMENT TOOLS</h3>
+              <p>Git · GitHub · VS Code · Postman · AWS · Azure · GCP</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section">
+        <div class="inner">
+          <p class="eyebrow">EXPERIENCE</p>
+          <h2 class="section-title">Where the work happens.</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-year">2020 — PRESENT</span>
+              <h3>Happy Babies Retail Pvt Ltd</h3>
+              <p>
+                <strong>IT Admin · Lead Developer · Graphic Designer · E-commerce Operations</strong><br>
+                Managing end-to-end IT infrastructure, websites, e-commerce operations and creative production across the organization.
+              </p>
+              <div class="chip-row">
+                <span class="chip">WEB</span>
+                <span class="chip">DESIGN</span>
+                <span class="chip">IT</span>
+                <span class="chip">OPERATIONS</span>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <span class="timeline-year">2023 — PRESENT</span>
+              <h3>Freelance Full Stack Developer &amp; Designer</h3>
+              <p>Creating websites, e-commerce experiences, design systems and practical digital solutions for businesses.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recognition -->
+      <section class="section">
+        <div class="inner">
+          <p class="eyebrow">RECOGNITION</p>
+          <h2 class="section-title">Awards &amp; milestones.</h2>
+          <div class="award-grid">
+            <article class="award">
+              <i data-lucide="award"></i>
+              <h3>BEST EMPLOYEE OF THE YEAR — 2024</h3>
+              <p>Happy Babies / Uyyaala.com</p>
+            </article>
+            <article class="award">
+              <i data-lucide="award"></i>
+              <h3>BEST EMPLOYEE OF THE YEAR — 2022</h3>
+              <p>Happy Babies / Uyyaala.com</p>
+            </article>
+            <article class="award">
+              <i data-lucide="award"></i>
+              <h3>ALL-ROUNDER OF THE YEAR — 2023</h3>
+              <p>Happy Babies / Uyyaala.com</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section">
+        <div class="inner about-grid">
+          <div class="portrait">
+            <img src="assets/images/profile.png" alt="Ahamed Mohiuddin (Khaju)" loading="lazy">
+          </div>
+          <div>
+            <p class="eyebrow">ABOUT</p>
+            <h2 class="section-title">The person behind the work.</h2>
+            <p class="meta" style="font-size:12px">DEVELOPER · DESIGNER · SYSTEMS BUILDER</p>
+            <p class="copy" style="margin-top:22px">
+              I operate at the intersection of code, design, and infrastructure. Whether it’s shipping a high-traffic store, configuring a network, or producing campaign creatives — the goal is always reliable, polished systems that actually work in the real world.
             </p>
-            
+            <p class="copy" style="font-size:16px;margin-top:24px">
+              Kakinada, Andhra Pradesh<br>
+              <a href="tel:+919603222102" style="color:#fff">+91 96032 22102</a><br>
+              <a href="mailto:skhaju@gmail.com" style="color:#8eeeff">skhaju@gmail.com</a>
+            </p>
+          </div>
         </div>
+      </section>
 
-        <h3 style="margin-bottom: 20px; color: #fff;">Technical Arsenal</h3>
-        <div class="skills-grid">
-            <div class="skill-tag">Google Ads Expert</div>
-            <div class="skill-tag">Meta (Facebook/Insta) Ads</div>
-            <div class="skill-tag">Google Listing Services (GMB)</div>
-            <div class="skill-tag">Shopify Development</div>
-            <div class="skill-tag">WordPress & Custom Websites</div>
-            <div class="skill-tag">Python Automation Tools</div>
-            <div class="skill-tag">Graphic & Flex Designing</div>
-            <div class="skill-tag">Video Editing</div>
-            <div class="skill-tag">WhatsApp API Automation</div>
-            <div class="skill-tag">Hardware & Networking</div>
-            <div class="skill-tag">AI-assisted Development</div>
+      <!-- Contact -->
+      <section id="contact" class="contact-final">
+        <div class="inner">
+          <p class="eyebrow">LET’S TALK</p>
+          <h2 class="contact-title">Ready when you are.</h2>
+          <p class="copy">
+            Have a project, a system that needs attention, or just want to connect? Reach out.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:skhaju@gmail.com">EMAIL ME</a>
+            <a class="button button-secondary" href="tel:+919603222102">CALL</a>
+            <a class="button button-secondary" href="https://linkedin.com/in/skmohiddin" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+          </div>
         </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Image / Video Viewer Modal -->
+  <div id="viewer" class="modal" role="dialog" aria-modal="true" aria-label="Portfolio viewer">
+    <div class="modal-card">
+      <button id="close-viewer" class="close" aria-label="Close viewer">
+        <i data-lucide="x"></i>
+      </button>
+      <img id="viewer-image" alt="">
+      <div class="modal-copy">
+        <p class="eyebrow" id="viewer-type"></p>
+        <h2 id="viewer-title" style="margin:8px 0"></h2>
+        <p class="copy" style="font-size:15px">Tools: Photoshop · Illustrator · InDesign · After Effects</p>
+      </div>
     </div>
-</section>
+  </div>
 
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-role">Technical & E-Commerce Lead</div>
-                    <div class="timeline-company">Happy Babies Retail Pvt. Ltd 2021 - Present</div>
-                    <div class="timeline-desc">
-                        <!-- <p>Serving as the "One-Man Technical Army" for an e-commerce startup.</p> -->
-                        <ul style="margin-top: 10px; margin-left: 20px; list-style-type: circle;">
-                            <li>Manage complete <strong>Shopify operations</strong>, including theme customization and inventory structure.</li>
-                            <li>Develop <strong>Python automation scripts</strong> (via AI tools) to streamline store entries.</li>
-                            <li>Handle all <strong>IT Hardware</strong> needs: Computer repairs, printer maintenance, and networking.</li>
-                            <li>Execute high-ROI digital marketing strategies via <strong>Google Ads & Meta Ads</strong>.</li>
-                            <li>Manage and optimize <strong>Google Business Profiles (GMB)</strong> for local visibility and reviews.</li>
-                            <li>Design <strong>visual branding assets</strong> including banners, social media posts, and hoardings.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-role">Freelance Web Developer</div>
-                    <div class="timeline-company">Various Clients</div>
-                    <div class="timeline-desc">
-                        <p>Delivering custom web solutions for diverse industries.</p>
-                        <ul style="margin-top: 10px; margin-left: 20px; list-style-type: circle;">
-                            <li>Built <strong>trading platforms</strong> with SMS/WhatsApp API integration for FinTech clients.</li>
-                            <li>Developed <strong>sports league websites</strong> (ATBPL) with player registration dashboards.</li>
-                            <li>Created math-logic based calculation systems for Chit Fund companies using <strong>PHP & JS</strong>.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>Digital Marketing & GMB</h3>
-                        <p>End-to-end management of Google Ads, Meta Ads, and Google Listing Services (GMB) to boost local presence and sales.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">Google Ads</span>
-                            <span class="card-tag">Meta Ads</span>
-                            <span class="card-tag">GMB / Local SEO</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="card-link">Contact for Services <i class="fas fa-arrow-right"></i></a>
-                </div>
+<script>
+(function(){
+  function initMotionPlayer(){
+    const cards=document.querySelectorAll(".motion-card");
+    const modal=document.getElementById("motion-viewer");
+    const player=document.getElementById("motion-player");
+    const closeButton=document.getElementById("close-motion-viewer");
+    const backdrop=modal ? modal.querySelector(".motion-modal-backdrop") : null;
+    if(!modal || !player || !closeButton || !backdrop) return;
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>Uyyaala.com</h3>
-                        <p>Complete Shopify e-commerce platform integration with Razorpay, delivery APIs, and full store automation.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">Shopify</span>
-                            <span class="card-tag">Liquid</span>
-                            <span class="card-tag">E-Commerce Ops</span>
-                        </div>
-                    </div>
-                    <a href="https://uyyaala.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+    function openMotion(card){
+      const type=card.dataset.motionType;
+      const url=card.dataset.motionUrl;
+      player.innerHTML="";
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>Bonagiri Chits</h3>
-                        <p>Custom PHP/HTML chit-fund calculation system with AI-assisted math logic for dividends and profit sharing.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">PHP</span>
-                            <span class="card-tag">Math Logic</span>
-                            <span class="card-tag">Full Stack</span>
-                        </div>
-                    </div>
-                    <a href="https://bonagirichits.adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+      if(type==="local"){
+        const video=document.createElement("video");
+        video.src=url;
+        video.controls=true;
+        video.autoplay=true;
+        video.playsInline=true;
+        player.appendChild(video);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden","false");
+        document.body.classList.add("motion-open-lock");
+        video.play().catch(function(){});
+      }
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>ATBPL.in</h3>
-                        <p>Official website for Andhra Tennis Ball Premier League. Features player registration forms and team galleries.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">WordPress</span>
-                            <span class="card-tag">Sports League</span>
-                            <span class="card-tag">Registration Forms</span>
-                        </div>
-                    </div>
-                    <a href="https://atbpl.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+      if(type==="youtube"){
+        const iframe=document.createElement("iframe");
+        iframe.src=url+"?autoplay=1&rel=0&modestbranding=1";
+        iframe.title="Promotional Short";
+        iframe.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+        iframe.allowFullscreen=true;
+        player.appendChild(iframe);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden","false");
+        document.body.classList.add("motion-open-lock");
+      }
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>GWCIndia.in</h3>
-                        <p>Stock market trading website with SMS notifications, WhatsApp integration, and optimized trading UI.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">WordPress</span>
-                            <span class="card-tag">FinTech</span>
-                            <span class="card-tag">API Integration</span>
-                        </div>
-                    </div>
-                    <a href="https://gwcindia.in" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+      if(type==="instagram"){
+        const iframe=document.createElement("iframe");
+        iframe.src=url.replace(/\/$/,"")+"/embed/";
+        iframe.title="Car Shine Promotional Reel";
+        iframe.allow="autoplay; encrypted-media; picture-in-picture";
+        iframe.allowFullscreen=true;
+        player.appendChild(iframe);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden","false");
+        document.body.classList.add("motion-open-lock");
+      }
+    }
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>Adapt Digi Solutions</h3>
-                        <p>Digital agency portfolio covering marketing, branding, SEO services, and web development.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">Agency</span>
-                            <span class="card-tag">Design</span>
-                            <span class="card-tag">SEO</span>
-                        </div>
-                    </div>
-                    <a href="https://adaptdigisolutions.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+    function closeMotion(){
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden","true");
+      player.innerHTML="";
+      document.body.classList.remove("motion-open-lock");
+    }
 
-                <div class="card tilt-card">
-                    <div class="card-content">
-                        <h3>Miracle Engineering</h3>
-                        <p>Corporate portfolio featuring engineering services, infrastructure projects, and galleries.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">Engineering</span>
-                            <span class="card-tag">Portfolio</span>
-                        </div>
-                    </div>
-                    <a href="https://miracleengineeringinfra.com" target="_blank" class="card-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
+    cards.forEach(function(card){
+      const button=card.querySelector(".motion-open");
+      if(!button) return;
+      button.addEventListener("click",function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        openMotion(card);
+      });
+    });
 
-            </div>
-        </div>
-    </section>
+    closeButton.addEventListener("click",function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      closeMotion();
+    });
+    backdrop.addEventListener("click",closeMotion);
+    document.addEventListener("keydown",function(event){
+      if(event.key==="Escape" && modal.classList.contains("active")) closeMotion();
+    });
+  }
 
-    <footer id="contact">
-        <div class="container">
-            <h2 style="margin-bottom: 20px;">Let's Work Together</h2>
-            <p style="margin-bottom: 30px; color: #aaa;">Based in Rameswaram, Kakinada | Open to Opportunities</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/skmohiddin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/skhaju" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.behance.net/skhaju" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                
-                <a href="mailto:skhaju@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+919603222102" aria-label="Phone"><i class="fas fa-phone"></i></a>
-            </div>
-            <p style="margin-top: 50px; font-size: 0.8rem; color: #555;">© 2025 Shaik Ahmed Mohiddin. All rights reserved.</p>
-        </div>
-    </footer>
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",initMotionPlayer);
+  }else{
+    initMotionPlayer();
+  }
+})();
+</script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
-        // --- 1. Custom Cursor Logic ---
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-
-        document.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-            
-            // Add a little lag to the circle for fluid feel
-            setTimeout(() => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            }, 50);
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'scale(0.8)';
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'scale(1)';
-        });
-
-        // --- 2. Three.js 3D Background (Starfield) ---
-        const initThreeJS = () => {
-            const container = document.getElementById('canvas-container');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
-
-            // Create Particles
-            const geometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
-            const posArray = new Float32Array(particlesCount * 3);
-
-            for(let i = 0; i < particlesCount * 3; i++) {
-                // Random positions
-                posArray[i] = (Math.random() - 0.5) * 5; 
-            }
-
-            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-            const material = new THREE.PointsMaterial({
-                size: 0.005,
-                color: 0x00f2ea, // Cyan
-            });
-
-            const particlesMesh = new THREE.Points(geometry, material);
-            scene.add(particlesMesh);
-
-            camera.position.z = 2;
-
-            // Mouse Interaction for 3D
-            let mouseX = 0;
-            let mouseY = 0;
-
-            document.addEventListener('mousemove', (event) => {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
-            });
-
-            // Animation Loop
-            const clock = new THREE.Clock();
-
-            const animate = () => {
-                const elapsedTime = clock.getElapsedTime();
-
-                // Rotate entire system slowly
-                particlesMesh.rotation.y = elapsedTime * 0.05;
-                
-                // Mouse interaction - Tilt the system based on mouse pos
-                particlesMesh.rotation.x = -mouseY * (0.0001);
-                particlesMesh.rotation.y = mouseX * (0.0001);
-
-                renderer.render(scene, camera);
-                window.requestAnimationFrame(animate);
-            };
-
-            animate();
-
-            // Handle Resize
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        };
-
-        initThreeJS();
-
-        // --- 3. 3D Tilt Effect on Cards (Vanilla JS) ---
-        const cards = document.querySelectorAll('.tilt-card');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
-                const rotateY = ((x - centerX) / centerX) * 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-            });
-        });
-
-        // --- 4. GSAP Animations ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate Hero Text
-        gsap.from(".hero h1", {
-            duration: 1.5,
-            y: 100,
-            opacity: 0,
-            ease: "power4.out",
-            delay: 0.5
-        });
-
-        // Animate Sections on Scroll
-        gsap.utils.toArray('.section-title').forEach(title => {
-            gsap.from(title, {
-                scrollTrigger: {
-                    trigger: title,
-                    start: "top 80%",
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1
-            });
-        });
-
-        gsap.utils.toArray('.card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                delay: i * 0.1 // Stagger effect
-            });
-        });
-
-    </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
